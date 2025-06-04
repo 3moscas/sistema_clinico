@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../main.dart';
+import '../../../../main.dart';
 import '../../../shared/constants/constants.dart';
 import 'widgets/menu_item_card.dart';
 

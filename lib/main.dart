@@ -3,14 +3,14 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'features/appointments/presentation/appointments_page.dart';
-import 'features/home/presentation/home_page.dart';
-import 'features/login/presentation/login_page.dart';
-import 'features/patients/presentation/patients_page.dart';
-import 'features/settings/presentation/settings_page.dart';
-import 'features/students/presentation/students_page.dart';
-import 'features/treatment/presentation/service_detail_page.dart';
-import 'features/treatment/presentation/treatment_description_page.dart';
+import 'src/features/appointments/presentation/appointments_page.dart';
+import 'src/features/home/presentation/home_page.dart';
+import 'src/features/login/presentation/login_page.dart';
+import 'src/features/patients/presentation/patients_page.dart';
+import 'src/features/settings/presentation/settings_page.dart';
+import 'src/features/students/presentation/students_page.dart';
+import 'src/features/treatment/presentation/service_detail_page.dart';
+import 'src/features/treatment/presentation/treatment_description_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Garante a inicialização correta
