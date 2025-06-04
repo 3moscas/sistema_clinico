@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sistema_clinico/features/clinicalcare/data/clinical_care_repository_impl.dart';
-import 'package:sistema_clinico/features/clinicalcare/data/clinical_care_repository_position_impl.dart';
-import 'package:sistema_clinico/features/clinicalcare/data/clinical_care_repository_date_impl.dart';
-import 'package:sistema_clinico/features/clinicalcare/data/clinical_care_repository_date_position_impl.dart';
 
-import 'package:sistema_clinico/shared/widgets/loading_widgets.dart';
+import '../../../shared/widgets/loading_widgets.dart';
 import '../../students/domain/students_model.dart';
+import '../data/clinical_care_repository_date_impl.dart';
+import '../data/clinical_care_repository_date_position_impl.dart';
+import '../data/clinical_care_repository_impl.dart';
+import '../data/clinical_care_repository_position_impl.dart';
 import 'students_attendance_list_widget.dart';
 import 'widgets/filterDateDropdown.dart';
 
@@ -35,19 +35,21 @@ class _ClinicalCarePageState extends ConsumerState<ClinicalCarePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final selectedDate = ref.watch(selectedDateProvider);
     final selectedItem = ref.watch(selectedItemProvider);
 
     final clinicalProvider = selectedDate == null && selectedItem == '0'
         ? clinicalCareByStudentCpfProvider(widget.student.cpf)
         : selectedDate != null && selectedItem == '0'
-            ? clinicalCareByDateProvider(widget.student.cpf, selectedDate)
-            : selectedItem != '0'
-                ? clinicalCareByPositionProvider(
-                    widget.student.cpf, selectedItem)
-                : clinicalCareByDatePositionProvider(
-                    widget.student.cpf, selectedDate ?? '', selectedItem);
+        ? clinicalCareByDateProvider(widget.student.cpf, selectedDate)
+        : selectedItem != '0'
+        ? clinicalCareByPositionProvider(widget.student.cpf, selectedItem)
+        : clinicalCareByDatePositionProvider(
+            widget.student.cpf,
+            selectedDate ?? '',
+            selectedItem,
+          );
 
     final clinical = ref.watch(clinicalProvider);
 
@@ -69,10 +71,10 @@ class _ClinicalCarePageState extends ConsumerState<ClinicalCarePage> {
         children: [
           if (_isDropdownOpen)
             FilterDateDropdown(
-              onDateChanged: (date) {
+              onDateChanged: (final date) {
                 ref.read(selectedDateProvider.notifier).state = date;
               },
-              onItemChanged: (item) {
+              onItemChanged: (final item) {
                 ref.read(selectedItemProvider.notifier).state = item;
               },
               onClearFilter: () {
@@ -85,11 +87,11 @@ class _ClinicalCarePageState extends ConsumerState<ClinicalCarePage> {
             ),
           Expanded(
             child: clinical.when(
-              data: (data) => StudentsAttendanceListWidget(
+              data: (final data) => StudentsAttendanceListWidget(
                 student: widget.student,
                 clinicalCare: data,
               ),
-              error: (error, stackTrace) => Text(error.toString()),
+              error: (final error, final stackTrace) => Text(error.toString()),
               loading: () => const LoadingWidget(),
             ),
           ),
@@ -99,5 +101,5 @@ class _ClinicalCarePageState extends ConsumerState<ClinicalCarePage> {
   }
 }
 
-final selectedDateProvider = StateProvider<String?>((ref) => null);
-final selectedItemProvider = StateProvider<String>((ref) => '0');
+final selectedDateProvider = StateProvider<String?>((final ref) => null);
+final selectedItemProvider = StateProvider<String>((final ref) => '0');

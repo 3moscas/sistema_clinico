@@ -4,7 +4,7 @@ class ThemeChange extends ChangeNotifier {
   static ThemeChange instance = ThemeChange();
 
   bool isDartTheme = false;
-  changeTheme() {
+  void changeTheme() {
     isDartTheme = !isDartTheme;
     notifyListeners();
   }

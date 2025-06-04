@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:sistema_clinico/shared/widgets/not_found_widget.dart';
+import '../../../../shared/widgets/not_found_widget.dart';
 import '../../domain/students_model.dart';
 import 'student_simple_card.dart';
 
 class StudentsListWidget extends StatelessWidget {
-  const StudentsListWidget({
-    super.key,
-    required this.students,
-  });
+  const StudentsListWidget({required this.students, super.key});
 
   final List<StudentModel> students;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (students.isEmpty) {
       return const NotFoundCard(text: 'Sem alunos cadastrados ainda!');
     }
 
     return ListView.builder(
       itemCount: students.length,
-      itemBuilder: (context, index) => StudentSimpleCard(
-        student: students[index],
-      ),
+      itemBuilder: (final context, final index) =>
+          StudentSimpleCard(student: students[index]),
     );
   }
 }

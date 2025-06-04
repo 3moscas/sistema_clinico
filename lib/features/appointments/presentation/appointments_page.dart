@@ -1,6 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:sistema_clinico/services/api_service.dart';
+import '../../../services/api_service.dart';
 
 class Appointments extends StatefulWidget {
   const Appointments({super.key});
@@ -12,7 +11,7 @@ class Appointments extends StatefulWidget {
 class _AppointmentsState extends State<Appointments> {
   List<Map<String, dynamic>> appointments = [];
   List<Map<String, dynamic>> filteredAppointments = [];
-  String searchQuery = "";
+  String searchQuery = '';
 
   @override
   void initState() {
@@ -24,112 +23,112 @@ class _AppointmentsState extends State<Appointments> {
     try {
       final response = await ApiClient().viewAllClass();
 
-      if (response["statusCode"] == 200) {
-        final List<Map<String, dynamic>> data =
-            List<Map<String, dynamic>>.from(response['data']);
+      if (response['statusCode'] == 200) {
+        final data = List<Map<String, dynamic>>.from(response['data']);
 
         setState(() {
-          appointments = data.map((item) {
-            return {
-              'id': item['id'],
-              'professionalName': item['professionalName'],
-              'discipline': item['discipline'],
-              'classDate': item['classDate'],
-              'subject': item['subject'],
-            };
-          }).toList();
+          appointments = data
+              .map(
+                (final item) => {
+                  'id': item['id'],
+                  'professionalName': item['professionalName'],
+                  'discipline': item['discipline'],
+                  'classDate': item['classDate'],
+                  'subject': item['subject'],
+                },
+              )
+              .toList();
           filteredAppointments = appointments;
         });
       } else {
         throw Exception(
-            'Erro ao buscar agendamentos: ${response["statusCode"]}');
+          'Erro ao buscar agendamentos: ${response["statusCode"]}',
+        );
       }
     } catch (e) {
       print('Erro ao buscar agendamentos: $e');
     }
   }
 
-  void updateSearchQuery(String query) {
+  void updateSearchQuery(final String query) {
     setState(() {
       searchQuery = query;
       filteredAppointments = appointments
-          .where((appointment) =>
-              appointment['professionalName']
-                  .toLowerCase()
-                  .contains(searchQuery.toLowerCase()) ||
-              appointment['subject']
-                  .toLowerCase()
-                  .contains(searchQuery.toLowerCase()))
+          .where(
+            (final appointment) =>
+                appointment['professionalName'].toLowerCase().contains(
+                  searchQuery.toLowerCase(),
+                ) ||
+                appointment['subject'].toLowerCase().contains(
+                  searchQuery.toLowerCase(),
+                ),
+          )
           .toList();
     });
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Agendamentos"),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Pesquisar por profissional ou assunto",
-                prefixIcon: const Icon(Icons.search, color: Colors.blue),
-                filled: true,
-                fillColor: Colors.blue.shade50,
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 0, horizontal: 16.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                  borderSide: BorderSide.none,
-                ),
+  Widget build(final BuildContext context) => Scaffold(
+    appBar: AppBar(title: const Text('Agendamentos')),
+    body: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: 'Pesquisar por profissional ou assunto',
+              prefixIcon: const Icon(Icons.search, color: Colors.blue),
+              filled: true,
+              fillColor: Colors.blue.shade50,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30.0),
+                borderSide: BorderSide.none,
               ),
-              onChanged: updateSearchQuery,
             ),
+            onChanged: updateSearchQuery,
           ),
-          Expanded(
-            child: filteredAppointments.isEmpty
-                ? const Center(child: CircularProgressIndicator())
-                : ListView.builder(
-                    itemCount: filteredAppointments.length,
-                    itemBuilder: (context, index) {
-                      final appointment = filteredAppointments[index];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 8.0),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+        ),
+        Expanded(
+          child: filteredAppointments.isEmpty
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                  itemCount: filteredAppointments.length,
+                  itemBuilder: (final context, final index) {
+                    final appointment = filteredAppointments[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                        vertical: 8.0,
+                      ),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.blue,
+                            child: Text(
+                              appointment['discipline'][0],
+                              style: const TextStyle(color: Colors.white),
+                            ),
                           ),
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: Colors.blue,
-                              child: Text(
-                                appointment['discipline'][0],
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            title: Text(appointment['professionalName']),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    "Disciplina: ${appointment['discipline']}"),
-                                Text("Data: ${appointment['classDate']}"),
-                                Text("Assunto: ${appointment['subject']}"),
-                              ],
-                            ),
+                          title: Text(appointment['professionalName']),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Disciplina: ${appointment['discipline']}"),
+                              Text("Data: ${appointment['classDate']}"),
+                              Text("Assunto: ${appointment['subject']}"),
+                            ],
                           ),
                         ),
-                      );
-                    },
-                  ),
-          ),
-        ],
-      ),
-    );
-  }
+                      ),
+                    );
+                  },
+                ),
+        ),
+      ],
+    ),
+  );
 }

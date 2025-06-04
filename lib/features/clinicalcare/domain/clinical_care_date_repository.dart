@@ -1,5 +1,8 @@
-import 'package:sistema_clinico/features/clinicalcare/domain/clinical_care.dart';
+import 'clinical_care.dart';
 
 abstract class ClinicalCareDateRepository {
-  Future<List<ClinicalCare>> findAllByStudentCpf(String cpf, String date);
+  Future<List<ClinicalCare>> findAllByStudentCpf(
+    final String cpf,
+    final String date,
+  );
 }

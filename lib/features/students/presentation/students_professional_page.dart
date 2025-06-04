@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sistema_clinico/shared/widgets/search_bar.dart' as custom;
-import 'package:sistema_clinico/shared/widgets/loading_widgets.dart';
+
+import '../../../shared/widgets/loading_widgets.dart';
+import '../../../shared/widgets/search_bar.dart' as custom;
 import '../data/repositories/students_professional_repository_impl.dart';
 import 'widgets/students_professional_list_widget.dart';
 
@@ -18,34 +19,38 @@ class _StudentsPageProfessionalState
   String searchText = '';
 
   @override
-  Widget build(BuildContext context) {
-    var students = ref.watch(studentsprofessionalProvider(searchText));
+  Widget build(final BuildContext context) {
+    final students = ref.watch(studentsprofessionalProvider(searchText));
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Estudante'),
-      ),
+      appBar: AppBar(title: const Text('Estudante')),
       body: Column(
         children: [
           Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 16.0,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: custom.SearchBar(onSearch: (query) {
-                    setState(() {
-                      searchText = query;
-                    });
-                  }),
+                  child: custom.SearchBar(
+                    onSearch: (final query) {
+                      setState(() {
+                        searchText = query;
+                      });
+                    },
+                  ),
                 ),
               ],
             ),
           ),
           Expanded(
             child: students.when(
-              data: (data) => StudentsProfessionalListWidget(students: data),
-              error: (error, stackTrace) => Text(stackTrace.toString()),
+              data: (final data) =>
+                  StudentsProfessionalListWidget(students: data),
+              error: (final error, final stackTrace) =>
+                  Text(stackTrace.toString()),
               loading: () => const LoadingWidget(),
             ),
           ),

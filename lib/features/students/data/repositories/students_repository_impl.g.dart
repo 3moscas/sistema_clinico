@@ -13,14 +13,14 @@ String _$studentsRepositoryHash() =>
 @ProviderFor(studentsRepository)
 final studentsRepositoryProvider =
     AutoDisposeProvider<StudentsRepository>.internal(
-  studentsRepository,
-  name: r'studentsRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$studentsRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      studentsRepository,
+      name: r'studentsRepositoryProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$studentsRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
@@ -32,8 +32,9 @@ String _$studentsHash() => r'f0e7e04470da3dc274d787ed8dd0fe5389f54702';
 final studentsProvider = AutoDisposeFutureProvider<List<StudentModel>>.internal(
   students,
   name: r'studentsProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$studentsHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$studentsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

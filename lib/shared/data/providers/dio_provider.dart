@@ -6,6 +6,4 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'dio_provider.g.dart';
 
 @riverpod
-Dio dio(Ref ref) {
-  return Dio(BaseOptions(baseUrl: dotenv.get("API_LINK")));
-}
+Dio dio(final Ref ref) => Dio(BaseOptions(baseUrl: dotenv.get('API_LINK')));

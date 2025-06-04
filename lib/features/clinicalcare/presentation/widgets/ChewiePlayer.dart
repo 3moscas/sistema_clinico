@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:sistema_clinico/shared/widgets/loading_widgets.dart';
-import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
+import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
+
+import '../../../../shared/widgets/loading_widgets.dart';
 
 class ChewieVideoPlayerWidget extends StatefulWidget {
-  const ChewieVideoPlayerWidget({super.key, required this.url});
+  const ChewieVideoPlayerWidget({required this.url, super.key});
 
   final String url;
 
@@ -25,27 +26,24 @@ class _ChewieVideoPlayerWidgetState extends State<ChewieVideoPlayerWidget> {
         _chewieController = ChewieController(
           videoPlayerController: _controller,
           aspectRatio: _controller.value.aspectRatio,
-          errorBuilder: (context, errorMessage) {
-            return Center(
-              child: Text(
-                errorMessage,
-                style: const TextStyle(color: Colors.white),
-              ),
-            );
-          },
+          errorBuilder: (final context, final errorMessage) => Center(
+            child: Text(
+              errorMessage,
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
         );
         setState(() {});
       });
   }
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-        height: _controller.value.size.height,
-        child: _controller.value.isInitialized
-            ? Chewie(controller: _chewieController)
-            : const LoadingWidget());
-  }
+  Widget build(final BuildContext context) => SizedBox(
+    height: _controller.value.size.height,
+    child: _controller.value.isInitialized
+        ? Chewie(controller: _chewieController)
+        : const LoadingWidget(),
+  );
 }
 
 // class CustomVideoPlayerWidget extends StatefulWidget {

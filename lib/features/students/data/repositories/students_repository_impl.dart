@@ -2,18 +2,17 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sistema_clinico/features/students/domain/students_model.dart';
-import 'package:sistema_clinico/shared/data/providers/dio_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../shared/data/providers/dio_provider.dart';
+import '../../domain/students_model.dart';
 import '../../domain/students_repository.dart';
 
 part 'students_repository_impl.g.dart';
 
 class StudentsRepositoryImpl implements StudentsRepository {
-  final Dio dio;
-
   StudentsRepositoryImpl({required this.dio});
+  final Dio dio;
 
   @override
   Future<List<StudentModel>> getAllStudents() async {
@@ -30,9 +29,12 @@ class StudentsRepositoryImpl implements StudentsRepository {
       return [for (final s in response.data as List) StudentModel.fromJson(s)];
     } on DioException catch (e) {
       // Log detalhado do erro
-      log('Falha ao consultar alunos. Mensagem: ${e.message}, Erro: ${e.error}');
+      log(
+        'Falha ao consultar alunos. Mensagem: ${e.message}, Erro: ${e.error}',
+      );
       throw Exception(
-          'Falha ao consultar alunos. Verifique a conexão ou a resposta do servidor.');
+        'Falha ao consultar alunos. Verifique a conexão ou a resposta do servidor.',
+      );
     } catch (e) {
       // Tratamento para outros tipos de exceção
       log('Erro inesperado ao buscar alunos: $e');
@@ -43,19 +45,20 @@ class StudentsRepositoryImpl implements StudentsRepository {
 
 // Provider para StudentsRepository
 @riverpod
-StudentsRepository studentsRepository(Ref ref) {
-  var dio = ref.watch(dioProvider);
+StudentsRepository studentsRepository(final Ref ref) {
+  final dio = ref.watch(dioProvider);
 
   return StudentsRepositoryImpl(dio: dio);
 }
 
 // Provider assíncrono para buscar os estudantes
 @riverpod
-Future<List<StudentModel>> students(Ref ref) async {
+Future<List<StudentModel>> students(final Ref ref) async {
   try {
     // Recupera a lista de estudantes usando o repositório
-    List<StudentModel> students =
-        await ref.watch(studentsRepositoryProvider).getAllStudents();
+    final students = await ref
+        .watch(studentsRepositoryProvider)
+        .getAllStudents();
     return students;
   } catch (e) {
     // Log detalhado do erro

@@ -7,16 +7,17 @@ part of 'clinical_care.dart';
 // **************************************************************************
 
 ClinicalCare _$ClinicalCareFromJson(Map<String, dynamic> json) => ClinicalCare(
-      id: (json['id'] as num).toInt(),
-      professional:
-          Professional.fromJson(json['professional'] as Map<String, dynamic>),
-      classDate: DateTime.parse(json['classDate'] as String),
-      discipline: json['discipline'] as String,
-      subject: json['subject'] as String,
-      media: json['media'] == null
-          ? null
-          : Media.fromJson(json['media'] as Map<String, dynamic>),
-    );
+  id: (json['id'] as num).toInt(),
+  professional: Professional.fromJson(
+    json['professional'] as Map<String, dynamic>,
+  ),
+  classDate: DateTime.parse(json['classDate'] as String),
+  discipline: json['discipline'] as String,
+  subject: json['subject'] as String,
+  media: json['media'] == null
+      ? null
+      : Media.fromJson(json['media'] as Map<String, dynamic>),
+);
 
 Map<String, dynamic> _$ClinicalCareToJson(ClinicalCare instance) =>
     <String, dynamic>{

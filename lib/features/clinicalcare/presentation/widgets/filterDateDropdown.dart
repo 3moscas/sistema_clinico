@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:sistema_clinico/shared/constants/colors.dart';
+import '../../../../shared/constants/colors.dart';
 
 class FilterDateDropdown extends StatefulWidget {
-  final ValueChanged<String> onDateChanged;
-  final ValueChanged<String> onItemChanged;
-  final VoidCallback onClearFilter;
-
   const FilterDateDropdown({
-    super.key,
     required this.onDateChanged,
     required this.onItemChanged,
     required this.onClearFilter,
+    super.key,
   });
+  final ValueChanged<String> onDateChanged;
+  final ValueChanged<String> onItemChanged;
+  final VoidCallback onClearFilter;
 
   @override
   _FilterDateDropdownState createState() => _FilterDateDropdownState();
@@ -30,9 +29,9 @@ class _FilterDateDropdownState extends State<FilterDateDropdown> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
-    Color dropdownTextColor = isDarkTheme ? Colors.white : Colors.black;
+  Widget build(final BuildContext context) {
+    final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+    final dropdownTextColor = isDarkTheme ? Colors.white : Colors.black;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -44,8 +43,10 @@ class _FilterDateDropdownState extends State<FilterDateDropdown> {
               onPressed: () => _showDatePicker(context),
               style: ElevatedButton.styleFrom(
                 backgroundColor: tPrimaryColor,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12.0,
+                  horizontal: 8.0,
+                ),
               ),
               icon: const Icon(Icons.calendar_today, color: Colors.white),
               label: Text(
@@ -63,61 +64,83 @@ class _FilterDateDropdownState extends State<FilterDateDropdown> {
                 items: [
                   DropdownMenuItem(
                     value: '0',
-                    child: Text('Todas',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Todas',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                   DropdownMenuItem(
                     value: 'Educadora Especial',
-                    child: Text('Educadora Especial',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Educadora Especial',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                   DropdownMenuItem(
                     value: 'Professor de Educação Inclusiva',
-                    child: Text('Professor de Educação Inclusiva',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Professor de Educação Inclusiva',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                   DropdownMenuItem(
                     value: 'Pedagoga Inclusiva',
-                    child: Text('Pedagoga Inclusiva',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Pedagoga Inclusiva',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                   DropdownMenuItem(
                     value: 'Psicopedagogo',
-                    child: Text('Psicopedagogo',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Psicopedagogo',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                   DropdownMenuItem(
                     value: 'Terapeuta Ocupacional',
-                    child: Text('Terapeuta Ocupacional',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Terapeuta Ocupacional',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                   DropdownMenuItem(
                     value: 'Fonoaudiólogo',
-                    child: Text('Fonoaudiólogo',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Fonoaudiólogo',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                   DropdownMenuItem(
                     value: 'Professora de Educação Física Adaptada',
-                    child: Text('Professora de Educação Física Adaptada',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Professora de Educação Física Adaptada',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                   DropdownMenuItem(
                     value: 'Neuropsicólogo Infantil',
-                    child: Text('Neuropsicólogo Infantil',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Neuropsicólogo Infantil',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                   DropdownMenuItem(
                     value: 'Acompanhante Terapêutica',
-                    child: Text('Acompanhante Terapêutica',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Acompanhante Terapêutica',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                   DropdownMenuItem(
                     value: 'Musicoterapeuta',
-                    child: Text('Musicoterapeuta',
-                        style: TextStyle(color: dropdownTextColor)),
+                    child: Text(
+                      'Musicoterapeuta',
+                      style: TextStyle(color: dropdownTextColor),
+                    ),
                   ),
                 ],
-                onChanged: (value) {
+                onChanged: (final value) {
                   setState(() {
                     _selectedItem = value!;
                     widget.onItemChanged(value);
@@ -125,8 +148,10 @@ class _FilterDateDropdownState extends State<FilterDateDropdown> {
                 },
                 iconSize: 30.0,
                 isExpanded: true,
-                hint: Text('Selecione',
-                    style: TextStyle(color: dropdownTextColor)),
+                hint: Text(
+                  'Selecione',
+                  style: TextStyle(color: dropdownTextColor),
+                ),
               ),
             ),
           ],
@@ -161,8 +186,8 @@ class _FilterDateDropdownState extends State<FilterDateDropdown> {
     );
   }
 
-  void _showDatePicker(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
+  void _showDatePicker(final BuildContext context) async {
+    final picked = await showDatePicker(
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
       firstDate: DateTime(2000),

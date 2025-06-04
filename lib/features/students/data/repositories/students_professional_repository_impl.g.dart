@@ -13,19 +13,19 @@ String _$studentsprofessionalRepositoryHash() =>
 @ProviderFor(studentsprofessionalRepository)
 final studentsprofessionalRepositoryProvider =
     AutoDisposeProvider<StudentsRepository>.internal(
-  studentsprofessionalRepository,
-  name: r'studentsprofessionalRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$studentsprofessionalRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      studentsprofessionalRepository,
+      name: r'studentsprofessionalRepositoryProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$studentsprofessionalRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef StudentsprofessionalRepositoryRef
-    = AutoDisposeProviderRef<StudentsRepository>;
+typedef StudentsprofessionalRepositoryRef =
+    AutoDisposeProviderRef<StudentsRepository>;
 String _$studentsprofessionalHash() =>
     r'b0fa75368d6138efce2e9dd5b70b8823fe215820';
 
@@ -61,21 +61,15 @@ class StudentsprofessionalFamily
   const StudentsprofessionalFamily();
 
   /// See also [studentsprofessional].
-  StudentsprofessionalProvider call(
-    String nome,
-  ) {
-    return StudentsprofessionalProvider(
-      nome,
-    );
+  StudentsprofessionalProvider call(String nome) {
+    return StudentsprofessionalProvider(nome);
   }
 
   @override
   StudentsprofessionalProvider getProviderOverride(
     covariant StudentsprofessionalProvider provider,
   ) {
-    return call(
-      provider.nome,
-    );
+    return call(provider.nome);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -97,24 +91,19 @@ class StudentsprofessionalFamily
 class StudentsprofessionalProvider
     extends AutoDisposeFutureProvider<List<StudentModel>> {
   /// See also [studentsprofessional].
-  StudentsprofessionalProvider(
-    String nome,
-  ) : this._internal(
-          (ref) => studentsprofessional(
-            ref as StudentsprofessionalRef,
-            nome,
-          ),
-          from: studentsprofessionalProvider,
-          name: r'studentsprofessionalProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$studentsprofessionalHash,
-          dependencies: StudentsprofessionalFamily._dependencies,
-          allTransitiveDependencies:
-              StudentsprofessionalFamily._allTransitiveDependencies,
-          nome: nome,
-        );
+  StudentsprofessionalProvider(String nome)
+    : this._internal(
+        (ref) => studentsprofessional(ref as StudentsprofessionalRef, nome),
+        from: studentsprofessionalProvider,
+        name: r'studentsprofessionalProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$studentsprofessionalHash,
+        dependencies: StudentsprofessionalFamily._dependencies,
+        allTransitiveDependencies:
+            StudentsprofessionalFamily._allTransitiveDependencies,
+        nome: nome,
+      );
 
   StudentsprofessionalProvider._internal(
     super._createNotifier, {
@@ -131,7 +120,7 @@ class StudentsprofessionalProvider
   @override
   Override overrideWith(
     FutureOr<List<StudentModel>> Function(StudentsprofessionalRef provider)
-        create,
+    create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -182,5 +171,6 @@ class _StudentsprofessionalProviderElement
   @override
   String get nome => (origin as StudentsprofessionalProvider).nome;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

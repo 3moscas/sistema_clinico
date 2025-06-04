@@ -13,19 +13,19 @@ String _$clinicalcareRepositoryHash() =>
 @ProviderFor(clinicalcareRepository)
 final clinicalcareRepositoryProvider =
     AutoDisposeProvider<ClinicalCareRepository>.internal(
-  clinicalcareRepository,
-  name: r'clinicalcareRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$clinicalcareRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      clinicalcareRepository,
+      name: r'clinicalcareRepositoryProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$clinicalcareRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef ClinicalcareRepositoryRef
-    = AutoDisposeProviderRef<ClinicalCareRepository>;
+typedef ClinicalcareRepositoryRef =
+    AutoDisposeProviderRef<ClinicalCareRepository>;
 String _$clinicalCareByStudentCpfHash() =>
     r'da73ebb5fe4dbeae008a90cfe77e628c13fa41a6';
 
@@ -61,21 +61,15 @@ class ClinicalCareByStudentCpfFamily
   const ClinicalCareByStudentCpfFamily();
 
   /// See also [clinicalCareByStudentCpf].
-  ClinicalCareByStudentCpfProvider call(
-    String cpf,
-  ) {
-    return ClinicalCareByStudentCpfProvider(
-      cpf,
-    );
+  ClinicalCareByStudentCpfProvider call(String cpf) {
+    return ClinicalCareByStudentCpfProvider(cpf);
   }
 
   @override
   ClinicalCareByStudentCpfProvider getProviderOverride(
     covariant ClinicalCareByStudentCpfProvider provider,
   ) {
-    return call(
-      provider.cpf,
-    );
+    return call(provider.cpf);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -97,24 +91,20 @@ class ClinicalCareByStudentCpfFamily
 class ClinicalCareByStudentCpfProvider
     extends AutoDisposeFutureProvider<List<ClinicalCare>> {
   /// See also [clinicalCareByStudentCpf].
-  ClinicalCareByStudentCpfProvider(
-    String cpf,
-  ) : this._internal(
-          (ref) => clinicalCareByStudentCpf(
-            ref as ClinicalCareByStudentCpfRef,
-            cpf,
-          ),
-          from: clinicalCareByStudentCpfProvider,
-          name: r'clinicalCareByStudentCpfProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$clinicalCareByStudentCpfHash,
-          dependencies: ClinicalCareByStudentCpfFamily._dependencies,
-          allTransitiveDependencies:
-              ClinicalCareByStudentCpfFamily._allTransitiveDependencies,
-          cpf: cpf,
-        );
+  ClinicalCareByStudentCpfProvider(String cpf)
+    : this._internal(
+        (ref) =>
+            clinicalCareByStudentCpf(ref as ClinicalCareByStudentCpfRef, cpf),
+        from: clinicalCareByStudentCpfProvider,
+        name: r'clinicalCareByStudentCpfProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$clinicalCareByStudentCpfHash,
+        dependencies: ClinicalCareByStudentCpfFamily._dependencies,
+        allTransitiveDependencies:
+            ClinicalCareByStudentCpfFamily._allTransitiveDependencies,
+        cpf: cpf,
+      );
 
   ClinicalCareByStudentCpfProvider._internal(
     super._createNotifier, {
@@ -131,7 +121,7 @@ class ClinicalCareByStudentCpfProvider
   @override
   Override overrideWith(
     FutureOr<List<ClinicalCare>> Function(ClinicalCareByStudentCpfRef provider)
-        create,
+    create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -182,5 +172,6 @@ class _ClinicalCareByStudentCpfProviderElement
   @override
   String get cpf => (origin as ClinicalCareByStudentCpfProvider).cpf;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

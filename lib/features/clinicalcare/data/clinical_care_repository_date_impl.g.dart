@@ -13,19 +13,19 @@ String _$clinicalcaredateRepositoryHash() =>
 @ProviderFor(clinicalcaredateRepository)
 final clinicalcaredateRepositoryProvider =
     AutoDisposeProvider<ClinicalCareDateRepository>.internal(
-  clinicalcaredateRepository,
-  name: r'clinicalcaredateRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$clinicalcaredateRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      clinicalcaredateRepository,
+      name: r'clinicalcaredateRepositoryProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$clinicalcaredateRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef ClinicalcaredateRepositoryRef
-    = AutoDisposeProviderRef<ClinicalCareDateRepository>;
+typedef ClinicalcaredateRepositoryRef =
+    AutoDisposeProviderRef<ClinicalCareDateRepository>;
 String _$clinicalCareByDateHash() =>
     r'b98579fb9382363e4dd8861644e437601fb76429';
 
@@ -60,24 +60,15 @@ class ClinicalCareByDateFamily extends Family<AsyncValue<List<ClinicalCare>>> {
   const ClinicalCareByDateFamily();
 
   /// See also [clinicalCareByDate].
-  ClinicalCareByDateProvider call(
-    String cpf,
-    String date,
-  ) {
-    return ClinicalCareByDateProvider(
-      cpf,
-      date,
-    );
+  ClinicalCareByDateProvider call(String cpf, String date) {
+    return ClinicalCareByDateProvider(cpf, date);
   }
 
   @override
   ClinicalCareByDateProvider getProviderOverride(
     covariant ClinicalCareByDateProvider provider,
   ) {
-    return call(
-      provider.cpf,
-      provider.date,
-    );
+    return call(provider.cpf, provider.date);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -99,27 +90,20 @@ class ClinicalCareByDateFamily extends Family<AsyncValue<List<ClinicalCare>>> {
 class ClinicalCareByDateProvider
     extends AutoDisposeFutureProvider<List<ClinicalCare>> {
   /// See also [clinicalCareByDate].
-  ClinicalCareByDateProvider(
-    String cpf,
-    String date,
-  ) : this._internal(
-          (ref) => clinicalCareByDate(
-            ref as ClinicalCareByDateRef,
-            cpf,
-            date,
-          ),
-          from: clinicalCareByDateProvider,
-          name: r'clinicalCareByDateProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$clinicalCareByDateHash,
-          dependencies: ClinicalCareByDateFamily._dependencies,
-          allTransitiveDependencies:
-              ClinicalCareByDateFamily._allTransitiveDependencies,
-          cpf: cpf,
-          date: date,
-        );
+  ClinicalCareByDateProvider(String cpf, String date)
+    : this._internal(
+        (ref) => clinicalCareByDate(ref as ClinicalCareByDateRef, cpf, date),
+        from: clinicalCareByDateProvider,
+        name: r'clinicalCareByDateProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$clinicalCareByDateHash,
+        dependencies: ClinicalCareByDateFamily._dependencies,
+        allTransitiveDependencies:
+            ClinicalCareByDateFamily._allTransitiveDependencies,
+        cpf: cpf,
+        date: date,
+      );
 
   ClinicalCareByDateProvider._internal(
     super._createNotifier, {
@@ -138,7 +122,7 @@ class ClinicalCareByDateProvider
   @override
   Override overrideWith(
     FutureOr<List<ClinicalCare>> Function(ClinicalCareByDateRef provider)
-        create,
+    create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -198,5 +182,6 @@ class _ClinicalCareByDateProviderElement
   @override
   String get date => (origin as ClinicalCareByDateProvider).date;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

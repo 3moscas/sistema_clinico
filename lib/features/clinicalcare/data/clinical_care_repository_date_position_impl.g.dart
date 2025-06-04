@@ -13,19 +13,19 @@ String _$clinicalcaredatepositionRepositoryHash() =>
 @ProviderFor(clinicalcaredatepositionRepository)
 final clinicalcaredatepositionRepositoryProvider =
     AutoDisposeProvider<ClinicalCareDatePositionRepository>.internal(
-  clinicalcaredatepositionRepository,
-  name: r'clinicalcaredatepositionRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$clinicalcaredatepositionRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      clinicalcaredatepositionRepository,
+      name: r'clinicalcaredatepositionRepositoryProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$clinicalcaredatepositionRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef ClinicalcaredatepositionRepositoryRef
-    = AutoDisposeProviderRef<ClinicalCareDatePositionRepository>;
+typedef ClinicalcaredatepositionRepositoryRef =
+    AutoDisposeProviderRef<ClinicalCareDatePositionRepository>;
 String _$clinicalCareByDatePositionHash() =>
     r'17dcbfe550dd8f55f00f837d07e9402f673d68a3';
 
@@ -66,22 +66,14 @@ class ClinicalCareByDatePositionFamily
     String date,
     String position,
   ) {
-    return ClinicalCareByDatePositionProvider(
-      cpf,
-      date,
-      position,
-    );
+    return ClinicalCareByDatePositionProvider(cpf, date, position);
   }
 
   @override
   ClinicalCareByDatePositionProvider getProviderOverride(
     covariant ClinicalCareByDatePositionProvider provider,
   ) {
-    return call(
-      provider.cpf,
-      provider.date,
-      provider.position,
-    );
+    return call(provider.cpf, provider.date, provider.position);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -103,30 +95,26 @@ class ClinicalCareByDatePositionFamily
 class ClinicalCareByDatePositionProvider
     extends AutoDisposeFutureProvider<List<ClinicalCare>> {
   /// See also [clinicalCareByDatePosition].
-  ClinicalCareByDatePositionProvider(
-    String cpf,
-    String date,
-    String position,
-  ) : this._internal(
-          (ref) => clinicalCareByDatePosition(
-            ref as ClinicalCareByDatePositionRef,
-            cpf,
-            date,
-            position,
-          ),
-          from: clinicalCareByDatePositionProvider,
-          name: r'clinicalCareByDatePositionProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$clinicalCareByDatePositionHash,
-          dependencies: ClinicalCareByDatePositionFamily._dependencies,
-          allTransitiveDependencies:
-              ClinicalCareByDatePositionFamily._allTransitiveDependencies,
-          cpf: cpf,
-          date: date,
-          position: position,
-        );
+  ClinicalCareByDatePositionProvider(String cpf, String date, String position)
+    : this._internal(
+        (ref) => clinicalCareByDatePosition(
+          ref as ClinicalCareByDatePositionRef,
+          cpf,
+          date,
+          position,
+        ),
+        from: clinicalCareByDatePositionProvider,
+        name: r'clinicalCareByDatePositionProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$clinicalCareByDatePositionHash,
+        dependencies: ClinicalCareByDatePositionFamily._dependencies,
+        allTransitiveDependencies:
+            ClinicalCareByDatePositionFamily._allTransitiveDependencies,
+        cpf: cpf,
+        date: date,
+        position: position,
+      );
 
   ClinicalCareByDatePositionProvider._internal(
     super._createNotifier, {
@@ -147,8 +135,9 @@ class ClinicalCareByDatePositionProvider
   @override
   Override overrideWith(
     FutureOr<List<ClinicalCare>> Function(
-            ClinicalCareByDatePositionRef provider)
-        create,
+      ClinicalCareByDatePositionRef provider,
+    )
+    create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -217,5 +206,6 @@ class _ClinicalCareByDatePositionProviderElement
   String get position =>
       (origin as ClinicalCareByDatePositionProvider).position;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

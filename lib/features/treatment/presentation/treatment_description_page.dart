@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:sistema_clinico/shared/constants/colors.dart';
+import '../../../shared/constants/colors.dart';
 
 class AddService extends StatefulWidget {
   const AddService({super.key});
@@ -23,7 +23,7 @@ class _AddServiceState extends State<AddService> {
     'Psicólogo',
     'Fonoaudiólogo',
     'Terapeuta Ocupacional',
-    'Psicopedagogo'
+    'Psicopedagogo',
   ];
   String? selectedProfession;
   DateTime? selectedDate;
@@ -34,7 +34,7 @@ class _AddServiceState extends State<AddService> {
 
   // 📅 Selecionar data
   Future<void> _selectDate() async {
-    final DateTime? picked = await showDatePicker(
+    final picked = await showDatePicker(
       context: context,
       initialDate: selectedDate ?? DateTime.now(),
       firstDate: DateTime(2000),
@@ -49,13 +49,11 @@ class _AddServiceState extends State<AddService> {
 
   // 🖼️ Anexar imagem
   Future<void> pickMedia() async {
-    final List<XFile>? picked = await _picker.pickMultiImage();
+    final picked = await _picker.pickMultiImage();
 
-    if (picked != null) {
-      setState(() {
-        attachments.addAll(picked);
-      });
-    }
+    setState(() {
+      attachments.addAll(picked);
+    });
   }
 
   // 🚀 Simular envio
@@ -79,7 +77,7 @@ class _AddServiceState extends State<AddService> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final dateFormatted = selectedDate != null
         ? DateFormat('dd/MM/yyyy').format(selectedDate!)
         : 'DD/MM/YYYY';
@@ -98,7 +96,6 @@ class _AddServiceState extends State<AddService> {
             Row(
               children: [
                 Expanded(
-                  flex: 1,
                   child: TextFormField(
                     controller: _clientController,
                     decoration: const InputDecoration(
@@ -110,7 +107,6 @@ class _AddServiceState extends State<AddService> {
                 ),
                 const SizedBox(width: 20),
                 Expanded(
-                  flex: 1,
                   child: InkWell(
                     onTap: _selectDate,
                     child: InputDecorator(
@@ -147,14 +143,9 @@ class _AddServiceState extends State<AddService> {
                 border: OutlineInputBorder(),
               ),
               items: professions
-                  .map(
-                    (e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(e),
-                    ),
-                  )
+                  .map((final e) => DropdownMenuItem(value: e, child: Text(e)))
                   .toList(),
-              onChanged: (value) {
+              onChanged: (final value) {
                 setState(() {
                   selectedProfession = value;
                 });
@@ -198,7 +189,7 @@ class _AddServiceState extends State<AddService> {
                   spacing: 8,
                   children: attachments
                       .map(
-                        (file) => Stack(
+                        (final file) => Stack(
                           alignment: Alignment.topRight,
                           children: [
                             Image.file(

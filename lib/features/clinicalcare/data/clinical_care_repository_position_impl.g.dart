@@ -13,19 +13,19 @@ String _$clinicalcarepositionRepositoryHash() =>
 @ProviderFor(clinicalcarepositionRepository)
 final clinicalcarepositionRepositoryProvider =
     AutoDisposeProvider<ClinicalCarePositionRepository>.internal(
-  clinicalcarepositionRepository,
-  name: r'clinicalcarepositionRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$clinicalcarepositionRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      clinicalcarepositionRepository,
+      name: r'clinicalcarepositionRepositoryProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$clinicalcarepositionRepositoryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef ClinicalcarepositionRepositoryRef
-    = AutoDisposeProviderRef<ClinicalCarePositionRepository>;
+typedef ClinicalcarepositionRepositoryRef =
+    AutoDisposeProviderRef<ClinicalCarePositionRepository>;
 String _$clinicalCareByPositionHash() =>
     r'9d962f8949fbbd1441ba7b8b53c89cab610e0289';
 
@@ -61,24 +61,15 @@ class ClinicalCareByPositionFamily
   const ClinicalCareByPositionFamily();
 
   /// See also [clinicalCareByPosition].
-  ClinicalCareByPositionProvider call(
-    String cpf,
-    String position,
-  ) {
-    return ClinicalCareByPositionProvider(
-      cpf,
-      position,
-    );
+  ClinicalCareByPositionProvider call(String cpf, String position) {
+    return ClinicalCareByPositionProvider(cpf, position);
   }
 
   @override
   ClinicalCareByPositionProvider getProviderOverride(
     covariant ClinicalCareByPositionProvider provider,
   ) {
-    return call(
-      provider.cpf,
-      provider.position,
-    );
+    return call(provider.cpf, provider.position);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -100,27 +91,24 @@ class ClinicalCareByPositionFamily
 class ClinicalCareByPositionProvider
     extends AutoDisposeFutureProvider<List<ClinicalCare>> {
   /// See also [clinicalCareByPosition].
-  ClinicalCareByPositionProvider(
-    String cpf,
-    String position,
-  ) : this._internal(
-          (ref) => clinicalCareByPosition(
-            ref as ClinicalCareByPositionRef,
-            cpf,
-            position,
-          ),
-          from: clinicalCareByPositionProvider,
-          name: r'clinicalCareByPositionProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$clinicalCareByPositionHash,
-          dependencies: ClinicalCareByPositionFamily._dependencies,
-          allTransitiveDependencies:
-              ClinicalCareByPositionFamily._allTransitiveDependencies,
-          cpf: cpf,
-          position: position,
-        );
+  ClinicalCareByPositionProvider(String cpf, String position)
+    : this._internal(
+        (ref) => clinicalCareByPosition(
+          ref as ClinicalCareByPositionRef,
+          cpf,
+          position,
+        ),
+        from: clinicalCareByPositionProvider,
+        name: r'clinicalCareByPositionProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$clinicalCareByPositionHash,
+        dependencies: ClinicalCareByPositionFamily._dependencies,
+        allTransitiveDependencies:
+            ClinicalCareByPositionFamily._allTransitiveDependencies,
+        cpf: cpf,
+        position: position,
+      );
 
   ClinicalCareByPositionProvider._internal(
     super._createNotifier, {
@@ -139,7 +127,7 @@ class ClinicalCareByPositionProvider
   @override
   Override overrideWith(
     FutureOr<List<ClinicalCare>> Function(ClinicalCareByPositionRef provider)
-        create,
+    create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -199,5 +187,6 @@ class _ClinicalCareByPositionProviderElement
   @override
   String get position => (origin as ClinicalCareByPositionProvider).position;
 }
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
