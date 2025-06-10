@@ -6,8 +6,8 @@ repository: https://github.com/3moscas/sistema_clinico
 publish_to: none
 
 environment:
-  sdk: ^3.8.0
-  flutter: ^3.32.0
+  sdk: ^3.7.0
+  flutter: ^3.31.0
 
 dependencies:
   animations: any
