@@ -1,19 +1,22 @@
-{pkgs}: {
+{ pkgs, ... }: {
   channel = "stable-24.05";
   packages = [
     pkgs.jdk17
     pkgs.unzip
     pkgs.gh
   ];
-  idx.extensions = [
-    "Dart-Code.dart-code"
-    "Dart-Code.flutter"
-    "eamodio.gitlens"
-  ];
-  idx.previews = {
+  env = {};
+  idx = {
+    extensions = [
+      "Dart-Code.dart-code"
+      "Dart-Code.flutter"
+      "eamodio.gitlens"
+    ];
     previews = {
-      web = {
-        command = [
+      enable = true;
+      previews = {
+        web = {
+          command = [
           "flutter"
           "run"
           "--machine"
@@ -23,11 +26,12 @@
           "0.0.0.0"
           "--web-port"
           "$PORT"
-        ];
-        manager = "flutter";
-      };
-      android = {
-        command = [
+          ];
+          manager = "flutter";
+          cwd = "src/sistema_clinico";
+        };
+        android = {
+          command = [
           "flutter"
           "run"
           "--machine"
@@ -35,9 +39,15 @@
           "android"
           "-d"
           "localhost:5555"
-        ];
-        manager = "flutter";
+          ];
+          manager = "flutter";
+          cwd = "src/sistema_clinico";
+        };
       };
+    };
+    workspace = {
+      onCreate = {};
+      onStart = {};
     };
   };
 }
